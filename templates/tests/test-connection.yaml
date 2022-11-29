@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "very-simple-web-server-k8s.fullname" . }}-test-connection"
+  labels:
+    {{- include "very-simple-web-server-k8s.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "very-simple-web-server-k8s.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
