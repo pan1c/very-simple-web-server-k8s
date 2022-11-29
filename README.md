@@ -32,12 +32,11 @@ helm upgrade very-simple-web-server-k8s very-simple-web-server-k8s
 
 Check the result
 ----------
-- Check LoadBalancer IP Adress
+- Check LoadBalancer IP address and open it in a browser
 ```
 kubectl get svc | grep very-simple-web-server-k8s 
-```
-- Open url by IP adress
 
-```
-URL=http://$(kubectl get svc | grep very-simple-web-server-k8s | awk '{print $4}')/index.html; echo $URL
+URL=http://$(kubectl get svc | grep very-simple-web-server-k8s | awk '{print $4}')/index.html;
+echo $URL
+
 ```
